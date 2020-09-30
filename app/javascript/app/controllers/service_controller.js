@@ -34,6 +34,11 @@ export default class extends Controller {
     }
   }
 
+  removeArrayField(event){
+    const element = document.getElementById(event.target.dataset.name)
+    element.parentNode.removeChild(element)
+  }
+
   addContact(event){
     event.preventDefault();
     event.target.insertAdjacentHTML('beforebegin',

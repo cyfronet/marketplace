@@ -1,0 +1,10 @@
+= form.input name, multiple: true, input_html: { class: "form-control text optional" },
+  wrapper_html: { "data-target" => "service.#{name}" },
+  disabled: cant_edit(["#{name}": []]), as: :array
+%a.text-primary{ "data-action" => "click->service#addNewArrayField",
+  "data-wrapper" => "service_#{name}",
+  "data-name" => "service[service_#{name}[]]",
+  "data-class" => "form-control text optional" } Add new
+%a.text-primary{ "data-action" => "click->service#removeArrayField",
+  "data-name" => "service_#{name}_1",
+  "data-class" => "form-control text optional" } Remove field
