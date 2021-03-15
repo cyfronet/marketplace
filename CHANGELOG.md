@@ -11,6 +11,7 @@ Please view this file on the master branch, on stable branches it's out of date.
 ### Added
 - Representation of the Resource Organisation and Resource Providers in the Resource views (@kmarszalek, @jarekzet)
 - Removal of duplicated provider entries in the Resource Provider field in the MP (@kmarszalek)
+- Extend finding resource in main searchbar (@danielkryska)
 
 ### Changed
 - `Provided by` field in `Popular resources`, `Suggested compatible resources` and `Recently added resources` to `Organisation` (@kmarszalek, @jarekzet)
