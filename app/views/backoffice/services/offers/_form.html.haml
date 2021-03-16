@@ -8,6 +8,7 @@
       selected: (offer.order_type || service.order_type),
       input_html: { class: "form-control-lg col-lg-6" }
     = f.input :webpage, label: _("Offer website"), input_html: { class: "form-control-lg" }
+    = f.input :internal, label: _("Internal Marketplace ordering")
     = f.input :order_url, input_html: { class: "form-control-lg" }
 
   %h4.mt-5.mb-0.text-uppercase

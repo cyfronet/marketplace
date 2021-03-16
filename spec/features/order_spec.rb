@@ -118,7 +118,8 @@ RSpec.feature "Service ordering" do
     [:open_access_service, :external_service].each do |type|
       scenario "I cannot order #{type} service twice in one project if offer has no parameters" do
         service = create(type)
-        _offer = create(:offer, service: service, order_type: service.order_type, order_url: service.order_url)
+        _offer = create(:offer, service: service, internal: false,
+                        order_type: service.order_type, order_url: service.order_url)
         _default_project = user.projects.find_by(name: "Services")
 
         visit service_path(service)
@@ -155,8 +156,8 @@ RSpec.feature "Service ordering" do
     [:open_access_service, :external_service].each do |type|
       scenario "I can order #{type} service twice in one project if offer has parameters" do
         service = create(type)
-        _offer = create(:offer_with_parameters, service: service, order_type: service.order_type,
-                        order_url: service.order_url)
+        _offer = create(:offer_with_parameters, service: service, internal: false,
+                        order_type: service.order_type, order_url: service.order_url)
         _default_project = user.projects.find_by(name: "Services")
 
         visit service_path(service)
@@ -510,7 +511,7 @@ RSpec.feature "Service ordering" do
 
         click_on "Access the resource"
 
-        expect(page).to have_link("Order externally")
+        expect(page).to have_link("Go to the order website")
       end
     end
   end

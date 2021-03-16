@@ -13,6 +13,7 @@ Please view this file on the master branch, on stable branches it's out of date.
 - Functional recommendation enhancements for the sake of better user experience (@wujuu)
 - Removal of duplicated provider entries in the Resource Provider field in the MP (@kmarszalek)
 - Feature highlight opinions panel in the admin section (@goreck888)
+- `Internal ordering` checkbox in offer's form (@goreck888)
 
 ### Changed
 - `Provided by` field in `Popular resources`, `Suggested compatible resources` and `Recently added resources` to `Organisation` (@kmarszalek, @jarekzet)
@@ -26,6 +27,8 @@ Please view this file on the master branch, on stable branches it's out of date.
 ### Fixed
 - Filtering by providers includes both `resource_organisation` and `providers` associations (@goreck888)
 - Displaying synchronization issues (if any occurs) in resource page for `data_administrators` (@goreck888)
+- Conditions to get external ordering of resource (@goreck888)
+- Internal ordering statistics in executive panel (@goreck888)
 
 ## [3.8.0] 2021-03-03
 

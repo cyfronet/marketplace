@@ -9,6 +9,7 @@ FactoryBot.define do
     sequence(:status) { :published }
     sequence(:webpage) { |n| "http://webpage#{n}.invalid" }
     sequence(:order_type) { :order_required }
+    sequence(:internal) { true }
     factory :offer_with_parameters do
       sequence(:parameters) { [build(:input_parameter)] }
     end
@@ -29,6 +30,7 @@ FactoryBot.define do
       sequence(:order_type) { :open_access }
     end
     factory :external_offer do
+      sequence(:internal) { false }
       sequence(:order_type) { :order_required }
       sequence(:order_url) { "http://order.com" }
     end

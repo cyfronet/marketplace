@@ -16,7 +16,7 @@ RSpec.describe Services::InlineOrderUrlComponent, type: :component do
     offer = create(:external_offer)
     render_inline(Services::InlineOrderUrlComponent.new(offerable: offer))
 
-    expect(page).to have_link("Order externally")
+    expect(page).to have_link("Go to the order website")
   end
 
   it "hides button with webpage if order_required order_type" do

@@ -19,7 +19,7 @@ class Services::InlineOrderUrlComponent < ApplicationComponent
 
   def link_name
     if @offerable.external
-      _("Order externally")
+      _("Go to the order website")
     else
       _("Go to the resource")
     end
