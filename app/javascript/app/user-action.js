@@ -6,24 +6,25 @@ export default function initProbes(scope = window) {
         .querySelectorAll("[data-probe]")
         .forEach(element => {
             const action = get_event_action_by(element.tagName);
-            element.addEventListener(action, () => call_user_action_controller(scope, element))
+            element.addEventListener(action, async () => await call_user_action_controller(scope, element))
         });
 }
 
-const call_user_action_controller = (scope, element) => {
+const call_user_action_controller = async (scope, element) => {
     // prevent call for disabled element
     if (element.disabled) {
         return;
     }
 
-    return fetch("/user_action", {
+    return await fetch("/user_action", {
         method: "POST",
         headers: {
             "X-CSRF-Token": Rails.csrfToken(),
             "Content-type": "application/json"
         },
         body: get_user_action_from(scope, element)
-    }).then();
+    })
+        .catch(error => console.log(error));
 }
 
 function get_event_action_by(tagName) {
@@ -37,10 +38,10 @@ function get_event_action_by(tagName) {
 
 function get_user_action_from(scope, element) {
     return JSON.stringify({
-        timestamp: new Date().getTime(),
+        timestamp: new Date().toISOString(),
         source: get_source_by(scope, element),
         target: get_target_by(scope, element),
-        action: get_action_by(scope, element)
+        user_action: get_action_by(scope, element)
     });
 }
 
@@ -64,7 +65,7 @@ function get_element_text(element) {
                 case 'text':
                     return element.value;
                 default: {
-                    return null;
+                    return "";
                 }
             }
         default:
@@ -74,14 +75,14 @@ function get_element_text(element) {
 
 function get_target_by(scope, element) {
     return {
-        visit_id: scope.tabId + "." + new Date().getTime(),
+        visit_id: scope.tabId + new Date().getTime(),
         page_id: get_target_url(scope.location.pathname, element)
     };
 }
 
 function get_source_by(scope, element) {
     return {
-        visit_id: scope.tabId + "." + new Date().getTime(),
+        visit_id: scope.tabId + new Date().getTime(),
         page_id: scope.location.pathname,
         root: get_source_root_by(element)
     };

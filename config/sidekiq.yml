@@ -16,4 +16,5 @@ staging:
   - mailers
   - reports
   - matomo
+  - probes
   - default

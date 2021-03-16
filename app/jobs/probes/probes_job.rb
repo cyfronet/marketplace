@@ -6,7 +6,8 @@ class Probes::ProbesJob < ApplicationJob
   rescue_from(StandardError) do |exception|
   end
 
-  def perform(url, body)
+  def perform(body)
+    url = Mp::Application.config.recommender_host + "/user_actions"
     Unirest.post url, { "Content-Type" => "application/json" }, body
   end
 end

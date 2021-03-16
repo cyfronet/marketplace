@@ -14,7 +14,7 @@ RSpec.feature "Recommended services" do
 
     services_ids = [1, 2, 3]
     services_ids.each { |id| create(:service, id: id) }
-    allow(Unirest).to receive(:post).and_return({ "recommendations": services_ids })
+    allow(Unirest).to receive(:post).and_return(double(code: 200, body: { "recommendations" => services_ids }))
     expect(Recommender::SimpleRecommender).not_to receive(:new)
 
     visit services_path
